@@ -19,9 +19,93 @@ A LRN element
     <style>
       :host {
         display: block;
+        --tile-image: '';
+        width: 474px;
+      }
+
+      .back_card {
+        background-color: orange;
+        height: 460px;
+        opacity: 0;
+
+      }
+
+      #container .back_card:hover {
+        opacity: 0.8;
+        transition: all .3s ease-in-out;
+      }
+
+      #container .front_card:hover .front_title {
+        opacity: 0;
+        transition: all .3s ease-in-out;
+      }
+
+      #container .front_card:hover .front_title_border {
+        opacity: 0;
+        transition: all .3s ease-in-out;
+      }
+
+      .image {
+        background-image: var(--tile-image);
+        background-position: top center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        width: 100%;
+        height: 100%;
+        justify-content: center;
+      }
+
+      .front_title {
+        opacity: 1;
+        text-align: center;
+        font-size: 36px;
+        color: #fff;
+        position: absolute;
+        top: 460px;
+        left: 170px;
+      }
+
+      .front_title_border {
+        border-top: solid 5px #fff;
+        border-radius: 5px;
+        width: 5%;
+        position: absolute;
+        top: 450px;
+        left: 170px;
+      }
+
+      .back_title {
+        opacity: 1;
+        text-align: center;
+        font-size: 36px;
+        color: #fff;
+        position: absolute;
+      }
+
+      .back_title_border {
+        border-top: solid 8px #fff;
+        border-radius: 5px;
+        width: 5%;
+        position: absolute;
       }
     </style>
-    <h2>[[title]]</h2>
+
+
+    <div id="container">
+      <div class="front_card">
+        <div class="front_title_border"></div>
+        <div class="front_title">[[title]]</div>
+        <div id="front_image" class="image">
+          <div class="back_card">
+            <div class="back_title_border"></div>
+            <div class="back_title">[[title]]</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+
   </template>
 
   <script>
@@ -31,16 +115,29 @@ A LRN element
       behaviors: [HAXBehaviors.PropertiesBehaviors, MaterializeCSSBehaviors.ColorBehaviors, SchemaBehaviors.Schema],
       properties: {
         /**
+         * Image
+         */
+        image: {
+          type: String,
+          value: '',
+          reflectToAttribute: true,
+        },
+        /**
          * Title
          */
         title: {
           type: String,
+          value: '',
+          reflectToAttribute: true,
         },
       },
+      observers: [
+        '__updateStyles(image)'
+      ],
       /**
        * Attached to the DOM, now fire.
        */
-      attached: function() {
+      attached: function () {
         // Establish hax property binding
         let props = {
           'canScale': true,
@@ -86,6 +183,12 @@ A LRN element
           }
         };
         this.setHaxProperties(props);
+      },
+
+      __updateStyles: function (image) {
+        this.customStyle['--tile-image'] = `url(${image})`;
+        console.log(image);
+        this.updateStyles();
       },
     });
   </script>
