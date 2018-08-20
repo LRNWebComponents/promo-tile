@@ -313,7 +313,9 @@ A LRN element
       activateBtn: function () {
         if (this.hover) {
           const link = this.$.link;
-          link.click();
+          if (window.innerWidth > 700) {
+            link.click();
+          }
         }
       },
       __hoverState: function () {
