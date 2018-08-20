@@ -49,7 +49,7 @@ A LRN element
         transition: all .3s ease-in-out;
       }
 
-      #container .front_card:hover .front_title {
+      :host[hover] #container .front_card .front_title {
         opacity: 0;
         transition: all .3s ease-in-out;
       }
@@ -109,6 +109,8 @@ A LRN element
       :host[hover] .learn_more paper-button {
         color: var(--hover-link);
       }
+
+
     </style>
 
     <div id="container">
@@ -320,7 +322,6 @@ A LRN element
       },
       __hoverState: function () {
         this.hover = !this.hover;
-        console.log(this.hover);
       }
     });
   </script>
