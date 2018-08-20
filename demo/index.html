@@ -16,11 +16,13 @@
     </style>
   </head>
   <body>
-    <div class="vertical-section-container">
+    <div class="vertical-section-container centered">
       <h3>Basic promo-tile demo</h3>
       <demo-snippet>
         <template>
-          <promo-tile title="Virtual Reality" image="https://www.wallpaperflare.com/static/739/747/773/intel-project-alloy-vr-idf-virtual-reality-wallpaper.jpg"></promo-tile>
+          <promo-tile title="Virtual Reality" image="https://www.wallpaperflare.com/static/739/747/773/intel-project-alloy-vr-idf-virtual-reality-wallpaper.jpg" alt="student using VR goggles" url="https://www.google.com">
+            <slot>Add exciting virtual experiences to your online classroom.</slot>
+          </promo-tile>
         </template>
       </demo-snippet>
     </div>
