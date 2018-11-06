@@ -37,14 +37,27 @@ A LRN element
         height: auto;
       }
 
+      .front_card {
+        display: flex;
+        flex-direction: column-reverse;
+      }
+
       .back_card {
         background-color: var(--hover-background-color);
         height: 460px;
         opacity: 0;
-
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
       }
 
-      /* TO DO: Check into better focus management / accessibility. */
+      @media screen and (max-width: 700px) {
+        .back_card {
+          justify-content: flex-start;
+          align-items: center;
+          padding-top: 25px;
+        }
+      }
 
       :host[hover] #container .back_card,
       :host:focus-within #container .back_card {
@@ -69,48 +82,72 @@ A LRN element
 
       .front_title {
         opacity: 1;
-        float: left;
-        margin: 375px 0 0 25px;
         font-size: 2.5em;
-        color: var(--font-color);
-        border-bottom: solid 5px #fff;
-        border-radius: 5px;
-        padding-bottom: 5px;
+        color: #fff;
+        padding-bottom: 36px;
+        position: absolute;
+        display: flex;
+        align-self: center;
+        text-shadow: 1px 1px 2px #000
       }
 
       .back_title {
         opacity: 1;
         font-size: 2.5em;
         color: var(--font-color);
-        float: left;
-        margin: -390px 0 0 25px;
-        border-bottom: solid 5px #fff;
-        border-radius: 5px;
-        padding-bottom: 5px;
+        display: flex;
+        justify-content: center;
+      }
+
+      @media screen and (max-width: 700px) {
+        .back_title {
+          padding-bottom: 5px;
+        }
       }
 
       .back_content {
         color: var(--font-color);
         font-size: 1em;
-        clear: left;
-        position: relative;
-        bottom: 334px;
-        width: 85%;
-        margin-left: auto;
-        margin-right: auto;
-        padding-top: 10px;
+        text-align: center;
+        padding: 0 15px;
       }
 
       .learn_more {
-        float: right;
-        margin-top: -75px;
+        display: flex;
+        justify-content: center;
+        position: relative;
+        bottom: -50px;
+      }
+
+      paper-button#learn {
         font-size: 1em;
         color: var(--font-color);
-        margin-right: 10px;
+        border: solid 1px #fff;
+        border-radius: 0;
+
+      }
+
+      @media screen and (max-width: 700px) {
+        paper-button#learn {
+          margin-top: 25px;
+        }
+      }
+
+      paper-button#learn:hover,
+      paper-button#learn:focus {
+        background-color: #363533;
       }
 
       :host[hover] .learn_more paper-button {
         color: var(--hover-link);
+      }
+
+
+      @media screen and (max-width: 700px) {
+        #container>* {
+          overflow: hidden;
+          height: 250px;
+        }
       }
     </style>
 
@@ -125,7 +162,7 @@ A LRN element
             </div>
             <div class="learn_more">
               <a href="[[url]]" id="link" target$="[[_urlTarget(url)]]">
-                <paper-button noink>Learn More
+                <paper-button id="learn" noink>Learn More
                   <iron-icon icon="chevron-right"></iron-icon>
                 </paper-button>
               </a>
@@ -134,9 +171,6 @@ A LRN element
         </div>
       </div>
     </div>
-
-
-
   </template>
 
   <script>
