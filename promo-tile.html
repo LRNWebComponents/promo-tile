@@ -91,6 +91,12 @@ A LRN element
         text-shadow: 1px 1px 2px #000
       }
 
+      @media screen and (max-width: 700px) {
+        .front_title {
+          font-size: 2em;
+        }
+      }
+
       .back_title {
         opacity: 1;
         font-size: 2.5em;
@@ -101,6 +107,7 @@ A LRN element
 
       @media screen and (max-width: 700px) {
         .back_title {
+          font-size: 2em;
           padding-bottom: 5px;
         }
       }
@@ -110,6 +117,8 @@ A LRN element
         font-size: 1em;
         text-align: center;
         padding: 0 15px;
+        font-size: 20px;
+        font-weight: 100;
       }
 
       .learn_more {
@@ -124,12 +133,11 @@ A LRN element
         color: var(--font-color);
         border: solid 1px #fff;
         border-radius: 0;
-
       }
 
       @media screen and (max-width: 700px) {
         paper-button#learn {
-          margin-top: 25px;
+          margin-top: 20px;
         }
       }
 
